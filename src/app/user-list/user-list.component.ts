@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from './user.model';
 import { PageEvent } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-user-list',
@@ -9,13 +10,13 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class UserListComponent implements OnInit {
   users: User[] = [];
-  visibleUsers : User[] = [];
+  visibleUsers:any;
   columnsToDisplay: string[] = ['name', 'occupation', 'email', 'details', 'update', 'delete'];
 
   length = 0;
   pageSize = 5;
   pageIndex = 0;
-  pageSizeOptions = [5, 10, 25];
+  pageSizeOptions = [5, 10, 25, 50];
   pageEvent: PageEvent = new PageEvent;
 
   ngOnInit(): void {
@@ -39,7 +40,7 @@ export class UserListComponent implements OnInit {
     {"id":14,"name":"Carleen Knight","occupation":"Database Administrator IV","email":"cknightd@hhs.gov","password":"$2a$04$z2igodJqMYz0.iCA1xq5/uuUNA.fNghR1sa2z8Vbu7dBBvEWnoiNq","bio":"Choctaw"},
     {"id":15,"name":"Amargo Keyzor","occupation":"Marketing Assistant","email":"akeyzore@rakuten.co.jp","password":"$2a$04$Y7AE6f6Y6J95hSWI4l44r.fkj.supPw58cmFWH4pFT2HCoIA2d5Yq","bio":"Yuman"},]
 
-    this.visibleUsers = this.users;
+    this.visibleUsers = new MatTableDataSource(this.users);
     this.length = this.users.length;
   }
 
@@ -51,10 +52,15 @@ export class UserListComponent implements OnInit {
 
     let begin = this.pageIndex*this.pageSize;
     begin = (begin > 0 && begin < this.length) ? begin : 0;
-    
+
     let end = begin + this.pageSize;
     end = (end > 0 && end < this.length) ? end : this.length;
 
     this.visibleUsers = this.users.slice(begin, end);
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.visibleUsers.filter = filterValue.trim().toLowerCase();
   }
 }

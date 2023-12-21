@@ -1,4 +1,20 @@
+h1 {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    color: blue;
+    font-weight: bolder;
+    font-style: italic;
+    background-color: lightgray;
+    padding: 1%;
+}
+
 .table-header {
     background-color: blue;
     color: white;
+}
+
+.filter {
+    margin-left: 1%;
+    width: 50%;
 }
