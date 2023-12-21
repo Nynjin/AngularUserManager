@@ -1,14 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from './user.model';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
-  styleUrl: './user-list.component.scss'
+  styleUrl: './user-list.component.scss',
 })
 export class UserListComponent implements OnInit {
   users: User[] = [];
+  visibleUsers : User[] = [];
   columnsToDisplay: string[] = ['name', 'occupation', 'email', 'details', 'update', 'delete'];
+
+  length = 0;
+  pageSize = 5;
+  pageIndex = 0;
+  pageSizeOptions = [5, 10, 25];
+  pageEvent: PageEvent = new PageEvent;
 
   ngOnInit(): void {
     this.loadData();
@@ -30,5 +38,23 @@ export class UserListComponent implements OnInit {
     {"id":13,"name":"Mignon Atrill","occupation":"Senior Editor","email":"matrillc@howstuffworks.com","password":"$2a$04$2kjPcFaDslqivyfN6yFUAePbsbKn2rvDKzz5hwOWBrA9Yx5PMGESG","bio":"Pakistani"},
     {"id":14,"name":"Carleen Knight","occupation":"Database Administrator IV","email":"cknightd@hhs.gov","password":"$2a$04$z2igodJqMYz0.iCA1xq5/uuUNA.fNghR1sa2z8Vbu7dBBvEWnoiNq","bio":"Choctaw"},
     {"id":15,"name":"Amargo Keyzor","occupation":"Marketing Assistant","email":"akeyzore@rakuten.co.jp","password":"$2a$04$Y7AE6f6Y6J95hSWI4l44r.fkj.supPw58cmFWH4pFT2HCoIA2d5Yq","bio":"Yuman"},]
+
+    this.visibleUsers = this.users;
+    this.length = this.users.length;
+  }
+
+  handlePageEvent(e: PageEvent) {
+    this.pageEvent = e;
+    this.length = e.length;
+    this.pageSize = e.pageSize;
+    this.pageIndex = e.pageIndex;
+
+    let begin = this.pageIndex*this.pageSize;
+    begin = (begin > 0 && begin < this.length) ? begin : 0;
+    
+    let end = begin + this.pageSize;
+    end = (end > 0 && end < this.length) ? end : this.length;
+
+    this.visibleUsers = this.users.slice(begin, end);
   }
 }
