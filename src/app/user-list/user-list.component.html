@@ -26,7 +26,11 @@
 
     <ng-container matColumnDef="details">
         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
-        <mat-cell *matCellDef="let user"> <button mat-flat-button color="primary">Details</button> </mat-cell>
+        <mat-cell *matCellDef="let user"> 
+            <a routerLink="/user-details/{{ user.id }}">
+                <button mat-flat-button color="primary">Details</button>
+            </a>
+        </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="update">

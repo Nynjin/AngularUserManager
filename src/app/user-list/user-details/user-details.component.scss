@@ -1,0 +1,22 @@
+h1 {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    font-weight: bolder;
+    padding: 1%;
+}
+
+button {
+    margin-top: 3%;
+}
+
+.cardField {
+    display: flex;
+    flex-direction: row;
+    color: black;
+}
+
+.cardFieldName {
+    font-weight: bold;
+    margin-right: 1%;
+}
