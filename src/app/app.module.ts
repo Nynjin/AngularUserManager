@@ -7,6 +7,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { UserDetailsComponent } from './user-list/user-details/user-details.component';
 import { UserUpdateComponent } from './user-list/user-update/user-update.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UserAddComponent } from './user-list/user-add/user-add.component';
 
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
@@ -22,7 +23,8 @@ import { MatIconModule } from '@angular/material/icon';
     AppComponent,
     UserListComponent,
     UserDetailsComponent,
-    UserUpdateComponent
+    UserUpdateComponent,
+    UserAddComponent
   ],
   imports: [
     BrowserModule,

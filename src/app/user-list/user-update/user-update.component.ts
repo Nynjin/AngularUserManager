@@ -43,8 +43,8 @@ export class UserUpdateComponent {
     const updatedUser = new User();
     updatedUser.id = this.userSelected.id;
     updatedUser.name = this.name;
-    updatedUser.email = this.email; // email validator
-    updatedUser.password = this.password; // hash password
+    updatedUser.email = this.email;
+    updatedUser.password = this.password;
     updatedUser.occupation = this.occupation;
     updatedUser.bio = this.bio;
     this.usersService.updateUserSelected(updatedUser);

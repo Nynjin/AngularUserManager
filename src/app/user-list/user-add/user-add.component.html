@@ -1,4 +1,4 @@
-<h1> User Update </h1>
+<h1> User Add </h1>
 
 <form
   class = userForm
@@ -9,7 +9,7 @@
   <mat-form-field appearance="outline">
     <input
       matInput
-      placeholder="{{ userSelected.name }}"
+      placeholder="name"
       [(ngModel)]="name"
       name="name"
       required
@@ -18,7 +18,7 @@
   <mat-form-field appearance="outline">
     <input
       matInput
-      placeholder="{{ userSelected.email }}"
+      placeholder="example@mail.com"
       [(ngModel)]="email"
       ngModel [email]="true"
       name="email"
@@ -32,7 +32,7 @@
     <input
       matInput
       [type]="hide ? 'password' : 'text'"
-      placeholder="{{ userSelected.password }}"
+      placeholder="password"
       [(ngModel)]="password"
       name="password"
       required
@@ -44,7 +44,7 @@
   <mat-form-field appearance="outline">
     <input
       matInput
-      placeholder="{{ userSelected.occupation }}"
+      placeholder="occupation"
       [(ngModel)]="occupation"
       name="occupation"
       required
@@ -53,7 +53,7 @@
   <mat-form-field appearance="outline">
     <input
       matInput
-      placeholder="{{ userSelected.bio }}"
+      placeholder="bio"
       [(ngModel)]="bio"
       name="bio"
       required

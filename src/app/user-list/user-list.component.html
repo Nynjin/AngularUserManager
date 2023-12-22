@@ -6,6 +6,10 @@
     <mat-form-field appearance="outline" class="filter">
         <input matInput (keyup)="applyFilter($event)" placeholder="Filter" #input>
     </mat-form-field>
+
+    <a routerLink="/user-add">
+        <button mat-flat-button color="primary">Add</button>
+    </a>
 </div>
 
 <mat-table [dataSource]="visibleUsers">

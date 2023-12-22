@@ -52,4 +52,16 @@ export class UsersService {
     this.usersBS.next(users);
     this.router.navigate(['home']);
   }
+
+  addUser(createdUser: User) {
+    const users = this.usersBS.getValue();
+    users.push(createdUser);
+    this.usersBS.next(users);
+    this.router.navigate(['home']);
+  }
+
+  getMaxId() {
+    const maxUserId = this.usersBS.value.reduce((maxId, user) => (user.id > maxId ? user.id : maxId), 0);
+    return maxUserId + 1;
+  }
 }
