@@ -11,7 +11,7 @@ import { UsersService } from '../shared/user.service';
 })
 export class UserListComponent implements OnInit {
   users: User[] = [];
-  visibleUsers:any;
+  visibleUsers: any;
   columnsToDisplay: string[] = ['name', 'occupation', 'email', 'details', 'update', 'delete'];
 
   length = 0;
@@ -20,7 +20,7 @@ export class UserListComponent implements OnInit {
   pageSizeOptions = [5, 10, 25, 50];
   pageEvent: PageEvent = new PageEvent;
 
-  constructor(private usersService: UsersService) {}
+  constructor(private usersService: UsersService) { }
 
   ngOnInit(): void {
     this.loadData();
@@ -41,7 +41,11 @@ export class UserListComponent implements OnInit {
     this.pageSize = e.pageSize;
     this.pageIndex = e.pageIndex;
 
-    let begin = this.pageIndex*this.pageSize;
+    this.updateUserList()
+  }
+
+  updateUserList() {
+    let begin = this.pageIndex * this.pageSize;
     begin = (begin > 0 && begin < this.length) ? begin : 0;
 
     let end = begin + this.pageSize;
@@ -53,5 +57,11 @@ export class UserListComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.visibleUsers.filter = filterValue.trim().toLowerCase();
+  }
+
+  onDelete(user: User) {
+    this.usersService.deleteUser(user);
+
+    this.updateUserList()
   }
 }

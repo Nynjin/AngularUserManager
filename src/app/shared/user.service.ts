@@ -60,6 +60,15 @@ export class UsersService {
     this.router.navigate(['home']);
   }
 
+  deleteUser(user: User) {
+    const users = this.usersBS.getValue();
+    let pos = users.findIndex(
+      (elt) => elt.id == user.id
+    );
+    users.splice(pos, 1);
+    this.usersBS.next(users);
+  }
+
   getMaxId() {
     const maxUserId = this.usersBS.value.reduce((maxId, user) => (user.id > maxId ? user.id : maxId), 0);
     return maxUserId + 1;

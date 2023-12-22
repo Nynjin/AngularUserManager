@@ -48,7 +48,9 @@
 
     <ng-container matColumnDef="delete">
         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
-        <mat-cell *matCellDef="let user"> <button mat-flat-button color="warn">Delete</button> </mat-cell>
+        <mat-cell *matCellDef="let user"> 
+            <button mat-flat-button color="warn" (click)="onDelete(user)">Delete</button> 
+        </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="columnsToDisplay" class="table-header"></mat-header-row>
