@@ -3,6 +3,6 @@ export class User {
     name!: String;
     occupation!: String;
     email!: String;
-    password! : String;
+    password!: String;
     bio!: String;
 }

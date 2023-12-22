@@ -1,0 +1,64 @@
+<h1> User Update </h1>
+
+<form
+  class = userForm
+  ngForm
+  (submit)="onSubmit(); userForm.reset()"
+  #userForm
+>
+  <mat-form-field appearance="outline">
+    <input
+      matInput
+      placeholder="{{ userSelected.name }}"
+      [(ngModel)]="name"
+      name="name"
+    />
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <input
+      matInput
+      placeholder="{{ userSelected.email }}"
+      [(ngModel)]="email"
+      ngModel [email]="true"
+      name="email"
+      type="email"
+      #emailInput="ngModel"
+    />
+    <mat-error *ngIf="emailInput['invalid']">Invalid email</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <input
+      matInput
+      [type]="hide ? 'password' : 'text'"
+      placeholder="{{ userSelected.password }}"
+      [(ngModel)]="password"
+      name="password"
+    />
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <input
+      matInput
+      placeholder="{{ userSelected.occupation }}"
+      [(ngModel)]="occupation"
+      name="occupation"
+    />
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <input
+      matInput
+      placeholder="{{ userSelected.bio }}"
+      [(ngModel)]="bio"
+      name="bio"
+    />
+  </mat-form-field>
+  
+  <button mat-flat-button color="accent" (Click)="onSubmit()" [disabled]="emailInput['invalid']">
+    Submit
+  </button>
+  <a routerLink="/home" class="homeButton">
+    <button mat-flat-button color="primary">Back to Users List</button>
+  </a>
+</form>

@@ -5,20 +5,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserDetailsComponent } from './user-list/user-details/user-details.component';
+import { UserUpdateComponent } from './user-list/user-update/user-update.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
+import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    UserUpdateComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +33,8 @@ import { MatCardModule } from '@angular/material/card';
     MatPaginatorModule,
     MatFormFieldModule, MatInputModule,
     MatCardModule,
+    FormsModule,
+    MatIconModule
   ],
   providers: [
     provideClientHydration()

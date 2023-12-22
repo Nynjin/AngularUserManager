@@ -1,0 +1,18 @@
+h1 {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    font-weight: bolder;
+    padding: 1%;
+}
+
+.userForm {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin-left: 1%;
+}
+
+.homeButton {
+    margin-top: 5%;
+}
