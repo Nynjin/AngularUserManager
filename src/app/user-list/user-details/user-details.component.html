@@ -1,0 +1,26 @@
+<h1> Users Details </h1>
+
+<mat-card *ngIf="userSelected">
+    <mat-card-content>
+        <mat-card-subtitle class="cardField">
+            <p class="cardFieldName">Name:</p>
+            <p>{{ userSelected.name }}</p>
+        </mat-card-subtitle>
+        <mat-card-subtitle class="cardField">
+            <p class="cardFieldName">Email:</p>
+            <p>{{ userSelected.email }}</p>
+        </mat-card-subtitle>
+        <mat-card-subtitle class="cardField">
+            <p class="cardFieldName">Occupation:</p>
+            <p>{{ userSelected.occupation }}</p>
+        </mat-card-subtitle>
+        <mat-card-subtitle class="cardField">
+            <p class="cardFieldName">Bio:</p>
+            <p>{{ userSelected.bio }}</p>
+        </mat-card-subtitle>
+        <a routerLink="/home">
+            <button mat-flat-button color="primary">Back to Users List</button>
+        </a>
+    </mat-card-content>
+  </mat-card>
+  

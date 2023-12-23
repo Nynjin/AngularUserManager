@@ -1,0 +1,27 @@
+h1 {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    color: blue;
+    font-weight: bolder;
+    font-style: italic;
+    background-color: lightgray;
+    padding: 1%;
+}
+
+div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.table-header {
+    background-color: blue;
+    color: white;
+}
+
+.filter {
+    width: 50%;
+}
