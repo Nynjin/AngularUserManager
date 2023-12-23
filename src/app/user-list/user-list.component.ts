@@ -32,7 +32,10 @@ export class UserListComponent implements OnInit {
       .subscribe((users) => (this.users = users));
 
     this.visibleUsers = new MatTableDataSource(this.users);
-    this.length = this.users.length;
+    if (this.users)
+      this.length = this.users.length;
+    else
+      this.length = 0;
   }
 
   handlePageEvent(e: PageEvent) {
