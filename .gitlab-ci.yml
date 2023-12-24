@@ -1,0 +1,23 @@
+# Use Node.js LTS-Alpine as the Docker image
+image: node:lts-alpine
+
+# Install dependencies
+before_script:
+  - npm ci
+  - npm install -g @angular/cli
+  - npm install
+
+# Build Angular App
+pages:
+  cache:
+    paths:
+      - node_modules/
+  script:
+    - npm install -g @angular/cli
+    - npm install
+    - ng build --aot --optimization --output-path public
+  artifacts:
+    paths:
+      - public 
+  only:
+    - main
