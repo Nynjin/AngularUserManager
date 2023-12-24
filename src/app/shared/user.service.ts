@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../user-list/user.model';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, of, switchMap } from 'rxjs';
 import { Router } from '@angular/router';
 import { HttpService } from './http-service';
 
@@ -8,15 +8,21 @@ import { HttpService } from './http-service';
   providedIn: 'root',
 })
 export class UsersService {
-  userSelected = new BehaviorSubject<User>(null);
-  usersBS = new BehaviorSubject<User[]>(null);
+  private usersBS = new BehaviorSubject<User[]>(null);
+  private dataLoadedSubject = new Subject<void>();
 
-  constructor(
-    private router: Router,
-    private http: HttpService) {
-    http
-      .getUsers()
-      .subscribe((users) => this.usersBS.next(users));
+  userSelected = new BehaviorSubject<User>(null);
+  dataLoaded$ = this.dataLoadedSubject.asObservable();
+
+  constructor(private router: Router, private http: HttpService) {
+    http.getUsers().subscribe((users) => {
+      this.usersBS.next(users);
+      this.dataLoadedSubject.next(); // Signal that data is loaded
+    });
+
+    this.dataLoaded$.pipe(
+      switchMap(() => this.usersBS.asObservable())
+    );
   }
 
   getUsers(): Observable<User[]> {

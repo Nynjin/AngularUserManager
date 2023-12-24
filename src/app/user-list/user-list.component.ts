@@ -15,7 +15,7 @@ export class UserListComponent implements OnInit {
   columnsToDisplay: string[] = ['name', 'occupation', 'email', 'details', 'update', 'delete'];
 
   length = 0;
-  pageSize = 5;
+  pageSize = 10;
   pageIndex = 0;
   pageSizeOptions = [5, 10, 25, 50];
   pageEvent: PageEvent = new PageEvent;
@@ -27,15 +27,16 @@ export class UserListComponent implements OnInit {
   }
 
   loadData = () => {
-    this.usersService
-      .getUsers()
-      .subscribe((users) => (this.users = users));
+    this.usersService.dataLoaded$.subscribe(() => {
+      this.loadData();
+      this.updateUserList();
+    });
 
-    this.visibleUsers = new MatTableDataSource(this.users);
-    if (this.users)
+    this.usersService.getUsers().subscribe((users) => {
+      this.users = users;
+      this.visibleUsers = new MatTableDataSource(this.users);
       this.length = this.users.length;
-    else
-      this.length = 0;
+    });
   }
 
   handlePageEvent(e: PageEvent) {
